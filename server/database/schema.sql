@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+  description TEXT,
+  price NUMERIC(10, 2) NOT NULL CHECK (price >= 0),
+  category VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id SERIAL PRIMARY KEY,
+  customer_name VARCHAR(200) NOT NULL,
+  customer_email VARCHAR(200) NOT NULL,
+  status VARCHAR(50) NOT NULL DEFAULT 'new',
+  total NUMERIC(10, 2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS marketplace_requests (
+  id SERIAL PRIMARY KEY,
+  customer_name VARCHAR(200) NOT NULL,
+  customer_email VARCHAR(200) NOT NULL,
+  product_url TEXT NOT NULL,
+  size VARCHAR(50),
+  color VARCHAR(100),
+  status VARCHAR(50) NOT NULL DEFAULT 'new',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
